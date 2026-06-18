@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>For Ayii ❤️</title>
+
+<style>
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial,sans-serif;
+}
+
+body{
+overflow:hidden;
+height:100vh;
+background:#000814;
+display:flex;
+justify-content:center;
+align-items:center;
+position:relative;
+}
+
+
+/* STARS */
+
+.stars{
+position:absolute;
+width:100%;
+height:100%;
+overflow:hidden;
+}
+
+.star{
+position:absolute;
+background:white;
+border-radius:50%;
+animation:twinkle 2s infinite alternate;
+}
+
+@keyframes twinkle{
+from{opacity:.2;}
+to{opacity:1;}
+}
+
+
+
+/* SHOOTING STARS */
+
+.shooting-star,
+.comet{
+
+position:absolute;
+
+background:linear-gradient(to right,
+white,
+transparent);
+
+transform:rotate(-45deg);
+
+pointer-events:none;
+z-index:1;
+
+}
+
+.shooting-star{
+width:120px;
+height:2px;
+}
+
+
+.comet{
+
+width:220px;
+height:4px;
+
+background:linear-gradient(
+to right,
+#ffffff,
+#87CEFA,
+transparent);
+
+filter:blur(1px);
+
+}
+
+
+@keyframes shoot{
+
+0%{
+
+opacity:0;
+
+transform:
+translate(0,0)
+rotate(-45deg);
+
+}
+
+10%{
+opacity:1;
+}
+
+
+100%{
+
+opacity:0;
+
+transform:
+translate(-1000px,1000px)
+rotate(-45deg);
+
+}
+
+}
+
+
+
+/* ORBITS */
+
+.orbit{
+
+position:absolute;
+
+border:1px solid rgba(255,255,255,.1);
+
+border-radius:50%;
+
+animation:spin linear infinite;
+
+}
+
+.orbit1{
+width:250px;
+height:250px;
+animation-duration:25s;
+}
+
+.orbit2{
+width:400px;
+height:400px;
+animation-duration:40s;
+}
+
+.orbit3{
+width:550px;
+height:550px;
+animation-duration:60s;
+}
+
+
+
+@keyframes spin{
+
+from{
+transform:rotate(0deg);
+}
+
+to{
+transform:rotate(360deg);
+}
+
+}
+
+
+.planet{
+
+width:25px;
+height:25px;
+
+border-radius:50%;
+
+position:absolute;
+
+top:-12px;
+
+left:50%;
+
+}
+
+
+.p1{
+background:#4da6ff;
+}
+
+.p2{
+background:#ff944d;
+}
+
+.p3{
+background:#bb6cff;
+}
+
+
+
+
+
+/* SUN */
+
+.sun{
+
+width:170px;
+height:170px;
+
+border-radius:50%;
+
+background:
+radial-gradient(
+#ffe082,
+#ff9800);
+
+display:flex;
+justify-content:center;
+align-items:center;
+
+cursor:pointer;
+
+font-size:28px;
+font-weight:bold;
+
+color:white;
+
+z-index:10;
+
+box-shadow:
+
+0 0 40px orange,
+0 0 80px orange,
+0 0 150px orange;
+
+animation:pulse 2s infinite;
+
+}
+
+
+
+@keyframes pulse{
+
+0%{
+transform:scale(1);
+}
+
+
+50%{
+transform:scale(1.05);
+}
+
+100%{
+transform:scale(1);
+}
+
+}
+
+
+
+
+/* LETTER */
+
+.letter{
+
+position:absolute;
+
+width:500px;
+max-width:90%;
+
+padding:30px;
+
+background:rgba(255,255,255,.96);
+
+border-radius:20px;
+
+color:black;
+
+text-align:center;
+
+line-height:1.8;
+
+display:none;
+
+z-index:50;
+
+animation:fade .8s;
+
+box-shadow:
+0 0 30px rgba(255,255,255,.4);
+
+}
+
+
+@keyframes fade{
+
+from{
+
+opacity:0;
+
+transform:
+translateY(20px);
+
+}
+
+to{
+
+opacity:1;
+
+transform:
+translateY(0);
+
+}
+
+}
+
+
+h2{
+margin-bottom:15px;
+font-size:32px;
+}
+
+
+</style>
+
+</head>
+
+<body>
+
+
+
+<div class="stars"></div>
+
+
+
+
+<div class="orbit orbit1">
+<div class="planet p1"></div>
+</div>
+
+
+
+<div class="orbit orbit2">
+<div class="planet p2"></div>
+</div>
+
+
+
+<div class="orbit orbit3">
+<div class="planet p3"></div>
+</div>
+
+
+
+
+<div class="sun" onclick="openLetter()">
+
+Click Me
+
+</div>
+
+
+
+
+
+<div class="letter" id="letter">
+
+<h2>💌</h2>
+
+<p>
+
+halo ayii,<br><br>
+
+im so lucky to met u,<br>
+
+makasi uda hadir dikehidupan akuu,<br>
+
+i love u so muchh,<br>
+
+more more moreee than everything,<br>
+
+now n forever,<br>
+
+have a nice day,<br>
+
+mwaa 💋<br><br>
+
+–love, ren.
+
+</p>
+
+</div>
+
+
+
+
+<audio id="music">
+
+<source src="lagu.mp3" type="audio/mpeg">
+
+</audio>
+
+
+
+
+
+<script>
+
+
+/* STARS */
+
+const stars=document.querySelector(".stars");
+
+for(let i=0;i<250;i++){
+
+let star=document.createElement("div");
+
+star.className="star";
+
+let size=Math.random()*3;
+
+star.style.width=size+"px";
+star.style.height=size+"px";
+
+star.style.left=Math.random()*100+"%";
+star.style.top=Math.random()*100+"%";
+
+star.style.animationDelay=
+Math.random()*2+"s";
+
+stars.appendChild(star);
+
+}
+
+
+
+/* LETTER */
+
+function openLetter(){
+
+document.getElementById("letter").style.display="block";
+
+document.getElementById("music").play();
+
+}
+
+
+
+
+/* SHOOTING STAR */
+
+function createShootingStar(){
+
+const star=document.createElement("div");
+
+star.className="shooting-star";
+
+
+star.style.left=
+Math.random()*window.innerWidth+"px";
+
+
+star.style.top=
+Math.random()*200+"px";
+
+
+star.style.animation=
+"shoot 2s linear forwards";
+
+
+document.body.appendChild(star);
+
+
+setTimeout(()=>{
+
+star.remove();
+
+},2000);
+
+}
+
+
+
+/* COMET */
+
+function createComet(){
+
+const comet=document.createElement("div");
+
+comet.className="comet";
+
+
+comet.style.left=
+Math.random()*window.innerWidth+"px";
+
+
+comet.style.top=
+Math.random()*150+"px";
+
+
+comet.style.animation=
+"shoot 4s linear forwards";
+
+
+document.body.appendChild(comet);
+
+
+setTimeout(()=>{
+
+comet.remove();
+
+},4000);
+
+}
+
+
+
+/* RANDOM EVENTS */
+
+setInterval(()=>{
+
+createShootingStar();
+
+},7000);
+
+
+
+setInterval(()=>{
+
+createComet();
+
+},18000);
+
+
+
+</script>
+
+</body>
+</html>
